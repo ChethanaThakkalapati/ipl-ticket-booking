@@ -1,0 +1,294 @@
+/* CSS VARIABLES */
+:root {
+    --primary: #0b1f3a;
+    --accent: #f4c542;
+    --background: #f4f6f9;
+    --text: #222222;
+    --white: #ffffff;
+    --border: #dddddd;
+}
+
+/* GENERAL STYLING */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    padding-top: 80px;
+}
+
+section {
+    padding: 40px 8%;
+}
+
+h2 {
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+/* NAVIGATION BAR */
+header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 15px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* HERO SECTION */
+#home {
+    min-height: 450px;
+    background: linear-gradient(135deg, #0b1f3a, #183f6b);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#home h2 {
+    color: var(--accent);
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+#home p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+/* BUTTONS */
+button {
+    background-color: var(--accent);
+    color: var(--primary);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* ABOUT SECTION */
+#about ul {
+    margin: 15px 0 25px 25px;
+}
+
+#about li {
+    margin-bottom: 8px;
+}
+
+/* MATCH SCHEDULE TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 15px;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1f4f8;
+}
+
+tbody tr:hover {
+    background-color: #fff3cc;
+}
+
+table a {
+    background-color: var(--accent);
+    color: var(--primary);
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* TEAM FILTER */
+#team-filter {
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* BOOKING FORM */
+form {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form input:focus,
+form select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* BOOKING SUMMARY */
+#summary {
+    background-color: var(--white);
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#summary h2 {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+}
+
+#summary p {
+    margin-bottom: 10px;
+}
+
+/* MY BOOKINGS */
+#my-bookings {
+    overflow-x: auto;
+}
+
+/* GUIDELINES CARDS */
+#guidelines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#guidelines h2 {
+    width: 100%;
+}
+
+#guidelines div {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 220px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+#guidelines div:hover {
+    transform: translateY(-5px);
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    #home h2 {
+        font-size: 28px;
+    }
+
+    section {
+        padding: 30px 5%;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+}
