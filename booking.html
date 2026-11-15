@@ -6,15 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>IPL Ticket Booking Form</title>
-
+    <link rel="stylesheet" href="booking.css" />
+    <script src="javascript/app.js" defer></script>
   </head>
+  <header class="booking-header">
+    <h2>IPL Ticket Booking</h2>
+
+    <nav>
+      <a href="index/index.html">Home</a>
+    </nav>
+  </header>
 
   <body>
     <header>
       <section id="booking">
         <h2>Book Your IPL Ticket</h2>
 
-        <form action="#" method="post">
+        <form id="bookingForm">
           <!-- Personal Details -->
 
           <label for="name">Full Name:</label>
@@ -80,11 +88,11 @@
           <select id="stand" name="stand" required>
             <option value="">-- Select Stand --</option>
 
-            <option value="General">General</option>
+            <option value="General" data-price="500">General - ₹500</option>
 
-            <option value="Premium">Premium</option>
+            <option value="Premium" data-price="1500">Premium - ₹1500</option>
 
-            <option value="VIP">VIP</option>
+            <option value="VIP" data-price="2500">VIP - ₹2500</option>
           </select>
 
           <br /><br />
@@ -99,6 +107,7 @@
             name="quantity"
             min="1"
             max="10"
+            value="1"
             required
           />
 
@@ -106,7 +115,7 @@
 
           <!-- Booking Preference -->
 
-          <p>Additional Preferences:</p>
+          <p>Payment Method:</p>
 
           <input
             type="radio"
@@ -136,13 +145,24 @@
 
           <button type="reset">Reset Form</button>
         </form>
-      </section>
-      <h1>IPL Ticket Booking</h1>
+        <!-- Booking Summary Card -->
 
-      <nav>
-        <a href="index/index.html">Home</a>
-        <a href="#booking">Book Ticket</a>
-      </nav>
+        <div class="summary-card">
+          <h2>Booking Summary</h2>
+
+          <p>Match: <span id="summaryMatch">Not selected</span></p>
+
+          <p>Stand: <span id="summaryStand">Not selected</span></p>
+
+          <p>Ticket Price: ₹<span id="summaryPrice">0</span></p>
+
+          <p>Quantity: <span id="summaryQuantity">0</span></p>
+
+          <hr />
+
+          <h3>Total Amount: ₹<span id="totalAmount">0</span></h3>
+        </div>
+      </section>
     </header>
   </body>
 </html>
