@@ -1,46 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import MatchCard from "./components/MatchCard";
+import { supabase } from "./supabase";
 import "./App.css";
 
 function App() {
+  const [matches, setMatches] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState("All");
+  const [loading, setLoading] = useState(true);
 
-  const matches = [
-    {
-      id: 1,
-      teams: "RCB vs CSK",
-      date: "10 April 2026, 7:30 PM",
-      venue: "Bengaluru",
-      general: 1000,
-      premium: 2500,
-      vip: 5000,
-    },
-    {
-      id: 2,
-      teams: "MI vs CSK",
-      date: "12 April 2026, 7:30 PM",
-      venue: "Mumbai",
-      general: 1200,
-      premium: 3000,
-      vip: 6000,
-    },
-    {
-      id: 3,
-      teams: "RCB vs MI",
-      date: "15 April 2026, 7:30 PM",
-      venue: "Bengaluru",
-      general: 1500,
-      premium: 3000,
-      vip: 5500,
-    },
-  ];
+  useEffect(() => {
+    fetchMatches();
+  }, []);
+  useEffect(() => {
+  const channel = supabase
+    .channel("matches-changes")
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "matches",
+      },
+      (payload) => {
+        console.log("Database changed:", payload);
+        fetchMatches();
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}, []);
+
+  async function fetchMatches() {
+  const { data, error } = await supabase
+    .from("matches")
+    .select("*");
+
+  if (error) {
+    console.error("Error fetching matches:", error.message);
+  } else {
+    setMatches(data);
+  }
+
+  setLoading(false);
+}
 
   const filteredMatches =
     selectedTeam === "All"
       ? matches
-      : matches.filter((match) => match.teams.includes(selectedTeam));
+      : matches.filter(
+          (match) =>
+            match.team1 === selectedTeam ||
+            match.team2 === selectedTeam
+        );
 
   return (
     <>
@@ -55,16 +71,28 @@ function App() {
           onChange={(e) => setSelectedTeam(e.target.value)}
         >
           <option value="All">All Teams</option>
-          <option value="RCB">RCB</option>
           <option value="CSK">CSK</option>
           <option value="MI">MI</option>
+          <option value="RCB">RCB</option>
+          <option value="KKR">KKR</option>
+          <option value="GT">GT</option>
+          <option value="RR">RR</option>
+          <option value="SRH">SRH</option>
+          <option value="DC">DC</option>
+          <option value="LSG">LSG</option>
+          <option value="PBKS">PBKS</option>
         </select>
 
-        <div className="match-container">
-          {filteredMatches.map((match) => (
-            <MatchCard key={match.id} match={match} />
-          ))}
-        </div>
+        {loading ? (
+          <p>Loading matches...</p>
+        ) : (
+          <div className="match-container">
+            {filteredMatches.map((match) => (
+              <MatchCard key={match.id} match={match} />
+            ))}
+          </div>
+        )}
+
       </section>
     </>
   );
