@@ -337,3 +337,197 @@ footer {
         opacity: 0;
     }
 }
+/* Flexbox Navigation */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+header nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+/* Match Cards using CSS Grid */
+
+.match-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.match-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.match-card h2 {
+    color: #0b1f3a;
+}
+
+.match-card a {
+    display: inline-block;
+    background-color: #f5c542;
+    color: #0b1f3a;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+/* Guidelines using CSS Grid */
+
+.guidelines-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.guideline-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.guideline-card h3 {
+    color: #0b1f3a;
+}
+/* Grid and List View */
+
+.view-buttons {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.match-container.list-view {
+    grid-template-columns: 1fr;
+}
+
+.match-container.grid-view {
+    grid-template-columns: repeat(2, 1fr);
+}
+/* Hamburger Menu */
+
+/* Hide hamburger on desktop */
+.menu-toggle {
+    display: none;
+    background-color: #f5c542;
+    color: #0b1f3a;
+    border: none;
+    padding: 10px 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    header nav.active {
+        display: flex;
+    }
+
+}
+/* Responsive Layout */
+
+@media screen and (max-width: 768px) {
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        margin: 0;
+    }
+
+    #home,
+    #about,
+    #matches,
+    #my-bookings,
+    #guidelines,
+    footer {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #home {
+        min-height: 300px;
+        padding: 40px 20px;
+    }
+
+    .match-container {
+        grid-template-columns: 1fr;
+    }
+
+    .guidelines-container {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+
+    header {
+        width: 100%;
+    }
+
+}
+@media screen and (max-width: 768px) {
+
+    #home a {
+        display: inline-block;
+        margin: 8px 0;
+    }
+
+    #home button {
+        margin: 0;
+    }
+
+}
+/* desktop button alignment */
+#home a {
+    display: block;
+    width: fit-content;
+    margin: 10px auto;
+}
+
+#home button {
+    margin: 0;
+}
